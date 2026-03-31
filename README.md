@@ -1,66 +1,78 @@
-# Open Source Audit Project
+# Open Source Software Audit Project
 
-## Student Details
-- Name: SWARDA KISHOR SAWALE( 24BSA10081 )
-- Course: Open Source Software
-- Project Title: Open Source Audit
+- Student Name: Swarda Kishor Sawale
+- Registration Number: 24BSA10081
+- Course: Open Source Software 
+- Chosen Software: Python (PSF License)
 
-## Chosen Software
-Git (Distributed Version Control System)
 
-## Project Description
-This project focuses on analyzing Git as an open-source software. It includes a detailed study of its origin, license, ecosystem, and comparison with proprietary systems. The project also involves practical implementation using Linux shell scripting to demonstrate understanding of open-source tools and system operations.
+# About This Project
+This repository is the technical submission for the Open Source Audit capstone. The project involves a structured audit of a real open-source software project — covering its origin story, license analysis, Linux footprint, FOSS ecosystem, and a comparison with its proprietary alternative — alongside five shell scripts that demonstrate practical Linux and shell scripting skills.
+The full written report (12–16 pages) is submitted separately as a PDF on the VITyarthi portal.
 
-The objective of this project is to understand both theoretical and practical aspects of open-source software and its importance in modern computing.
+# Repository Structure
+### oss-audit-24bce10196/
+### ├── README.md
+### ├── script1.sh
+### ├── script2.sh
+### ├── script3.sh
+### ├── script4.sh
+### └── script5.sh
 
-## Scripts Overview
+# Scripts
+##  Script 1 — System Identity Report
+### File: script1_system_identity.sh
+### Purpose: Displays a welcome screen with key system information — the Linux distribution, kernel version, current user, home directory, system uptime, date/time, and the open-source license that covers the OS.
+Shell concepts used: Variables, echo, command substitution ($()), basic output formatting.
+### How to run:
+- bashchmod +x script1.sh
+- ./script1.sh
 
-### Script 1: System Identity Report
-This script displays system information such as kernel version, username, system uptime, date, and Linux distribution.
+## Script 2 — FOSS Package Inspector
+### File: script2_package_inspector.sh
+### Purpose: Checks whether Python is installed on the system, retrieves its version and license info, and uses a case statement to print a short philosophy note about Python and related packages.
+Shell concepts used: if-then-else, case statement, rpm -qi / dpkg -l, pipes with grep.
+### How to run:
+- bashchmod +x script2.sh
+- ./script2.sh
 
-### Script 2: FOSS Package Inspector
-This script checks whether Git is installed on the system and displays details like version and description.
+## Script 3 — Disk and Permission Auditor
+### File: script3_disk_auditor.sh
+### Purpose: Loops through a list of important system directories (/etc, /var/log, /home, /usr/bin, /tmp) and reports the disk usage, owner, and permissions of each. Also checks whether Python's site-packages or config directory exists.
+Shell concepts used: for loop, df, ls -ld, awk, du.
+### How to run:
+- bashchmod +x script3.sh
+- ./script3.sh
 
-### Script 3: Disk and Permission Auditor
-This script analyzes system directories and displays disk usage and permissions.
+## Script 4 — Log File Analyzer
+### File: script4_log_analyzer.sh
+### Purpose: Reads a specified log file line by line, counts how many lines contain a given keyword (default: error), and prints a summary along with the last 5 matching lines.
+Shell concepts used: while read loop, if-then, counter variables, command-line arguments ($1, $2), grep.
+### How to run:
+- bashchmod +x script4.sh
 
-### Script 4: Log File Analyzer
-This script counts occurrences of a keyword in a log file and displays matching lines.
+- Basic usage (searches for 'error' by default)
+./script4.sh /var/log/syslog
 
-### Script 5: Open Source Manifesto Generator
-This script generates a personalized manifesto based on user input.
+- Custom keyword
+./script4.sh /var/log/syslog WARNING
+Dependencies: A readable log file on the system (e.g., /var/log/syslog on Debian/Ubuntu or /var/log/messages on RHEL/Fedora).
 
-## How to Run the Scripts
+## Script 5 — Open Source Manifesto Generator
+### File: script5_manifesto_generator.sh
+### Purpose: Interactively asks the user three questions about their relationship with open source, then generates a personalised philosophy statement and saves it to a .txt file named after the current user.
+Shell concepts used: read for user input, string concatenation, writing to a file with > and >>, date command, aliases (demonstrated via comments).
+### How to run:
+- bashchmod +x script5.sh
+- ./script5.sh
+The output is saved as manifesto_vidish.txt in the current directory.
 
-### Step 1: Make Scripts Executable
-```bash
-chmod +x script1.sh
-chmod +x script2.sh
-chmod +x script3.sh
-chmod +x script4.sh
-chmod +x script5.sh
+- Running All Scripts
+To make all scripts executable at once:
+- bashchmod +x *.sh
+All scripts are written for bash and tested on Linux. They require no external dependencies beyond standard GNU coreutils and bash (version 4+).
 
-Step 2: Run Scripts
-./script1.sh
-./script2.sh
-./script3.sh
-./script4.sh /var/log/syslog error
-./script5.sh
+# Dependencies
+ToolPurposeUsually available onbashScript interpreterAll Linux distrosuname, uptime, whoami, dateSystem info (Script 1)All Linux distrosrpm or dpkgPackage inspection (Script 2)RHEL/Fedora or Debian/Ubuntudu, ls, awkDisk/permission audit (Script 3)All Linux distrosgrepLog analysis (Script 4)All Linux distros
 
-Requirements:
-Ubuntu (WSL) or Linux Environment
-Bash Shell
-Git installed
-
-Output:
-Scripts display output directly in the terminal
-Script 5 generates a text file containing the manifesto
-
-Learning Outcomes:
-Understanding of open-source software concepts
-Hands-on experience with Linux commands
-Knowledge of shell scripting (loops, conditions, variables)
-Understanding of Git and its ecosystem
-
-Conclusion:
-This project provided a comprehensive understanding of open-source software through both theoretical analysis and practical implementation. Git was studied in detail, and shell scripting skills were developed. The project highlights the importance of open-source tools in modern software development.
+Note: Script 2 uses rpm by default. If you are on a Debian/Ubuntu system, replace rpm -qi with dpkg -l and use the package name python3. Python is typically pre-installed on most Linux distributions.
